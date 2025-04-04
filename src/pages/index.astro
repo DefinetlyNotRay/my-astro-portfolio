@@ -1,11 +1,123 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import "../styles/global.css";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+// Astro components can use JavaScript/TypeScript logic here
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="en">
+  <head>
+    <title>My Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sacramento&display=swap" rel="stylesheet">
+    <!-- Keep the CDN script -->
+  </head>
+  <body style="font-family: 'Lato', sans-serif;">
+    <div class="">
+      <nav class="text-black  flex flex-row justify-center py-10 text-sm">
+        <div>
+          <ul class="flex gap-32">
+            <li>
+              <a href="#work">Work</a>
+            </li>
+            <li>
+              <a href="#home">Home</a>
+            </li>
+            <li>
+              <a href="#contact">Contact Me</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="flex flex-col  items-center justify-center mt-10  " >
+        <div id="home" class="flex flex-row justify-center gap-28 w-full items-center h-full">
+          <div class="relative">
+            <div class="absolute -top-10 -right-22 w-[220px] h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-right" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
+            <div
+            class="w-[534px] h-[698px]"
+            style="background-size: cover; background-image: url('https://5r7rfju2l4.ufs.sh/f/u1nbYPCUJps7AlSADSFc3pC5ShFDYOXkMTxlUQ2wsfBJEev9');"
+          ></div>
+          <div class="absolute -bottom-10 -left-22 w-[220px] h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-left" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
+
+        </div>
+          <div>
+            <div class="">
+              <h1 class="font-bold text-[64px] text-container leading-tight tracking-tight">Hi, I&apos;m Edgar and I&apos;m</h1>
+              <div class="flex gap-2 flex-row">
+
+                <h2 class="font-bold text-[48px] leading-tight text-container  tracking-tight">a</h2>
+                <span class="bg-[#0C0C0C] black-text font-bold text-[48px] leading-tight text-[#FFFEFE]">Junior Web & Mobile Developer</span>
+                <span class="dot-text font-bold text-[48px] leading-tight ">.</span>
+
+              </div>
+              <p class="text-xl font-medium text-container leading-tight mt-2 tracking-tight text-[#6C6C6C] w-[50ch]">I&apos;m a Junior Web & Mobile Developer based in Bojongsari, Indonesia. I&apos;m a fresh graduate from SMK Tunas Media and I&apos;m majoring in Informatika at Universitas Bunda Mulia.</p>
+            </div>
+		      </div>
+        </div>
+        <div class="mt-40 leading-tight tracking-tight">
+          <div>
+            <div class="">
+              <div>
+                <h1 class="font-black text-[64px] text-center">Work</h1>
+                <p class="text-[#6C6C6C] font-medium text-2xl text-center">Check my personal projects & work projects</p>
+              </div>
+              <div>
+                
+              </div>
+            </div>
+            <div class=""></div>
+          </div>
+        </div>
+      </main>
+      <footer class="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
+    </div>
+    <!-- Update the script tag to use client:load directive -->
+    <script>
+      // This will be processed by Astro and loaded on the client
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+    
+      gsap.registerPlugin(ScrollTrigger);
+    
+      document.addEventListener('DOMContentLoaded', () => {
+        gsap.from(".text-container", {
+          x: 100,
+          opacity: 0,
+          delay: 0.5,
+          duration: 0.5,
+          ease: "power3.out",
+        });
+        gsap.from(".rectangle-left", {
+          x: -100,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          delay: 0.2,
+        });
+        gsap.from(".rectangle-right", {
+          x: 100,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          delay: 0.2,
+        });
+        gsap.from(".black-text", {
+          x: 500,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          delay: 0.6,
+        });
+        gsap.from(".dot-text", {
+          x: 500,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          delay: 0.7,
+        });
+      });
+    </script>
+  </body>
+</html>
