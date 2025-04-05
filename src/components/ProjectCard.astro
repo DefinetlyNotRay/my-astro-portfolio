@@ -1,0 +1,38 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  imageUrl: string;
+  tags: string[];
+  siteUrl: string;
+  githubUrl: string;
+}
+
+const { title, description, imageUrl, tags, siteUrl, githubUrl } = Astro.props;
+---
+
+<div class="card">
+  <div
+    class="max-w-[435px] h-[350px] rounded-3xl"
+    style={`background-size:cover; background-image: url('${imageUrl}');`}
+  ></div>
+  <div class="flex flex-col mt-5 gap-3">
+    <h1 class="font-bold text-2xl">{title}</h1>
+    <div class="flex flex-wrap gap-2">
+      {tags.map(tag => (
+        <button class="bg-[#EFEFEF] text-black px-7 py-1 text-sm rounded-4xl font-bold">{tag}</button>
+      ))}
+    </div>
+    <p class="text-[#6C6C6C] font-medium h-10 max-w-[40ch]">{description}</p>
+  </div>
+  <div class="flex gap-4 mt-5 items-center">
+    <a href={siteUrl} class="bg-[#1E1E1E] text-white px-14 py-4 flex items-center gap-3 rounded-[14px]">
+      <i class="uil uil-eye text-xl"></i> 
+      <span class="font-semibold">View Site</span>
+    </a>
+    <a href={githubUrl} class="bg-[#FAFAFA] text-[#1E1E1E] px-[45px] py-4 flex gap-3 rounded-[14px]">
+      <box-icon name='github' type='logo'></box-icon>
+      <span class="font-semibold">Github Repo</span>
+    </a>
+  </div>
+</div>

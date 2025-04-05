@@ -1,0 +1,258 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+
+export interface Project {
+  title: string;
+  description: string;
+  imageUrl: string;
+  tags: string[];
+  siteUrl: string;
+  githubUrl: string;
+  category: string;
+}
+
+export interface Props {
+  projects: Project[];
+  itemsPerPage?: number;
+  currentPage?: number;
+}
+
+const { projects, itemsPerPage = 6, currentPage = 1 } = Astro.props;
+
+// Calculate pagination
+const totalPages = Math.ceil(projects.length / itemsPerPage);
+
+// Generate page numbers for pagination
+const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+---
+
+<div class="flex flex-col gap-5">
+  <div id="projects-grid" class="grid grid-cols-3 gap-7 grid-rows-2">
+    {projects.map((project, index) => (
+      <div 
+        class="project-item" 
+        data-page={Math.floor(index / itemsPerPage) + 1} 
+        data-category={project.category} 
+        data-tags={project.tags.join(',')}
+        style={`display: ${Math.floor(index / itemsPerPage) + 1 === 1 ? 'block' : 'none'}`}
+      >
+        <ProjectCard 
+          title={project.title}
+          description={project.description}
+          imageUrl={project.imageUrl}
+          tags={project.tags}
+          siteUrl={project.siteUrl}
+          githubUrl={project.githubUrl}
+        />
+      </div>
+    ))}
+  </div>
+
+  {totalPages > 1 && (
+    <div class="mt-8 mb-20 flex justify-center">
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious id="prev-page" class="pagination-nav-button" />
+          </PaginationItem>
+          
+          {pageNumbers.map(page => (
+            <PaginationItem>
+              <button 
+                data-page={page}
+                class={`pagination-link cursor-pointer w-10 h-10 flex items-center justify-center rounded-md text-sm ${page === 1 ? 'bg-[#1E1E1E] text-white' : 'text-black hover:bg-gray-100'}`}
+              >
+                {page}
+              </button>
+            </PaginationItem>
+          ))}
+          
+          <PaginationItem>
+            <PaginationNext id="next-page" class="pagination-nav-button" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
+  )}
+</div>
+
+<style>
+  /* Custom styling for active pagination button */
+  .pagination-link.active-page {
+    background-color: #1E1E1E !important;
+    color: white !important;
+  }
+  
+  /* Force cursor pointer on navigation buttons */
+  :global(.pagination-nav-button),
+  :global(.pagination-nav-button *) {
+    cursor: pointer !important;
+  }
+</style>
+
+<script>
+  let currentPage = 1;
+  const itemsPerPage = 6;
+  let currentCategory = "all";
+  
+  function showPage(pageNum) {
+    // Hide all project items
+    document.querySelectorAll('.project-item').forEach(item => {
+      item.style.display = 'none';
+    });
+    
+    // Get visible items based on current filter
+    const visibleItems = getVisibleItems();
+    
+    // Calculate start and end indices for current page
+    const startIndex = (pageNum - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    
+    // Show only items for the current page
+    visibleItems.forEach((item, index) => {
+      if (index >= startIndex && index < endIndex) {
+        item.style.display = 'block';
+      }
+    });
+    
+    // Update active state for pagination links
+    document.querySelectorAll('.pagination-link').forEach(link => {
+      const linkPage = parseInt(link.getAttribute('data-page'));
+      if (linkPage === pageNum) {
+        link.classList.add('active-page');
+        link.classList.remove('text-black', 'hover:bg-gray-100');
+        link.classList.add('bg-[#1E1E1E]', 'text-white');
+      } else {
+        link.classList.remove('active-page');
+        link.classList.remove('bg-[#1E1E1E]', 'text-white');
+        link.classList.add('text-black', 'hover:bg-gray-100');
+      }
+    });
+    
+    currentPage = pageNum;
+  }
+  
+  function getVisibleItems() {
+    if (currentCategory === "all") {
+      return Array.from(document.querySelectorAll('.project-item'));
+    } else {
+      return Array.from(document.querySelectorAll('.project-item')).filter(item => {
+        const category = item.getAttribute('data-category');
+        const tagsAttr = item.getAttribute('data-tags');
+        const tags = tagsAttr ? tagsAttr.split(',') : [];
+        
+        return category === currentCategory || tags.includes(currentCategory);
+      });
+    }
+  }
+  
+  function filterProjects(category) {
+    currentCategory = category;
+    
+    // Reset pagination to page 1
+    currentPage = 1;
+    
+    // Update display of project items based on category
+    const visibleItems = getVisibleItems();
+    
+    // Hide all items first
+    document.querySelectorAll('.project-item').forEach(item => {
+      item.style.display = 'none';
+    });
+    
+    // Show only first page of filtered items
+    visibleItems.slice(0, itemsPerPage).forEach(item => {
+      item.style.display = 'block';
+    });
+    
+    // Update active state for filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      if (btn.getAttribute('data-category') === category) {
+        btn.classList.remove('bg-[#EFEFEF]', 'text-black');
+        btn.classList.add('bg-[#1E1E1E]', 'text-white');
+      } else {
+        btn.classList.remove('bg-[#1E1E1E]', 'text-white');
+        btn.classList.add('bg-[#EFEFEF]', 'text-black');
+      }
+    });
+    
+    // Recalculate pagination
+    updatePagination();
+  }
+  
+  function updatePagination() {
+    const visibleItems = getVisibleItems();
+    const totalPages = Math.ceil(visibleItems.length / itemsPerPage);
+    
+    // Update pagination numbers
+    const paginationContainer = document.querySelector('.pagination-content');
+    if (paginationContainer) {
+      // Get all page number buttons
+      const pageButtons = document.querySelectorAll('.pagination-link');
+      
+      // Hide pagination if only one page or no items
+      const paginationWrapper = document.querySelector('.pagination').closest('div');
+      if (paginationWrapper) {
+        paginationWrapper.style.display = totalPages > 1 ? 'flex' : 'none';
+      }
+    }
+  }
+  
+  // Add event listeners when the DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    // Add tags data attribute to project items
+    document.querySelectorAll('.project-item').forEach(item => {
+      const tagsElements = item.querySelectorAll('.project-tag');
+      if (tagsElements.length > 0) {
+        const tags = Array.from(tagsElements).map(tag => tag.textContent.trim());
+        item.setAttribute('data-tags', tags.join(','));
+      }
+    });
+    
+    // Initialize the first page as active
+    showPage(1);
+    
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+        filterProjects(category);
+      });
+    });
+    
+    // Page number links
+    document.querySelectorAll('.pagination-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = parseInt(link.getAttribute('data-page'));
+        showPage(page);
+      });
+    });
+    
+    // Previous page button
+    const prevButton = document.getElementById('prev-page');
+    if (prevButton) {
+      prevButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentPage > 1) {
+          showPage(currentPage - 1);
+        }
+      });
+    }
+    
+    // Next page button
+    const nextButton = document.getElementById('next-page');
+    if (nextButton) {
+      nextButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const visibleItems = getVisibleItems();
+        const totalPages = Math.ceil(visibleItems.length / itemsPerPage);
+        
+        if (currentPage < totalPages) {
+          showPage(currentPage + 1);
+        }
+      });
+    }
+  });
+</script>
