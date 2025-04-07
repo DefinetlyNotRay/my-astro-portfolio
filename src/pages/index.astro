@@ -10,17 +10,17 @@ const projects: Project[] = [
     description: "A Weather WebApp made with ReactJS. This project uses the VisualCrossing's API",
     imageUrl: "https://5r7rfju2l4.ufs.sh/f/u1nbYPCUJps7DMXXdY9mUOd4PsD1IYHJi8uVZNFbexfTkLrQ",
     tags: ["React", "JavaScript"],
-    siteUrl: "#",
-    githubUrl: "#",
+    siteUrl: "https://project-weatherapp-web.netlify.app/",
+    githubUrl: "https://github.com/DefinetlyNotRay/Weather-Web",
     category: "React"
   },
   {
-    title: "Nexademy",
-    description: "A School student app like 'Sekolahan ID' but better! but its still in development",
-    imageUrl: "https://5r7rfju2l4.ufs.sh/f/u1nbYPCUJps7DMXXdY9mUOd4PsD1IYHJi8uVZNFbexfTkLrQ",
+    title: "Nexademy (WIP)",
+    description: "A School student app like 'Sekolahan ID' but better made by the Nexthrive Mobile Team!",
+    imageUrl: "https://5r7rfju2l4.ufs.sh/f/u1nbYPCUJps7bDmrbvM6JHSpAW4kfPh0GjqV1xDwnaQIrOCo",
     tags: ["React Native", "Expo"],
     siteUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Nexthrive/NexademyV2MOBILE",
     category: "Expo"
   },  
 ];
@@ -41,9 +41,9 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
   </head>
   <body style="font-family: 'Lato', sans-serif;">
     <div class="">
-      <nav class="text-black  flex flex-row justify-center py-10 text-sm">
+      <nav class="text-black flex flex-row justify-center py-10 text-sm">
         <div>
-          <ul class="flex gap-32">
+          <ul class="flex gap-32 md:gap-16 sm:gap-8">
             <li>
               <a href="#work">Work</a>
             </li>
@@ -57,47 +57,43 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
         </div>
       </nav>
 
-      <main class="flex flex-col  items-center justify-center mt-10  " >
-        <div id="home" class="flex flex-row justify-center gap-28 w-full items-center h-full">
+      <main class="flex flex-col items-center justify-center mt-10" >
+        <div id="home" class="flex flex-col lg:flex-row justify-center gap-10  lg:gap-28 w-full items-center h-full px-4 md:px-0">
           <div class="relative">
-            <div class="absolute -top-10 -right-22 w-[220px] h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-right" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
+            <div class="absolute -top-10 -right-22 w-[150px] hidden lg:block  md:w-[220px] h-[80px] md:h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-right" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
             <div
-            class="w-[534px] h-[698px]"
+            class="w-[300px] md:w-[400px] lg:w-[534px] h-[400px] md:h-[500px] lg:h-[698px]"
             style="background-size: cover; background-image: url('https://5r7rfju2l4.ufs.sh/f/u1nbYPCUJps7AlSADSFc3pC5ShFDYOXkMTxlUQ2wsfBJEev9');"
           ></div>
-          <div class="absolute -bottom-10 -left-22 w-[220px] h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-left" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
-
+          <div class="absolute -bottom-10 -left-22 w-[150px] md:w-[220px] h-[80px] hidden lg:block  md:h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-left" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
         </div>
-          <div>
-            <div class="">
-              <h1 class="font-bold text-[64px] text-container leading-tight tracking-tight">Hi, I&apos;m Edgar and I&apos;m</h1>
-              <div class="flex gap-2 flex-row">
-
-                <h2 class="font-bold text-[48px] leading-tight text-container  tracking-tight">a</h2>
-                <span class="bg-[#0C0C0C] black-text font-bold text-[48px] leading-tight text-[#FFFEFE]">Junior Web & Mobile Developer</span>
-                <span class="dot-text font-bold text-[48px] leading-tight ">.</span>
-
+          <div class="mt-16 md:mt-0 px-4 md:px-0">
+            <div class="text-center lg:text-left">
+              <h1 class="font-bold text-4xl md:text-5xl lg:text-[64px] text-container leading-tight tracking-tight">Hi, I&apos;m Edgar and I&apos;m</h1>
+              <div class="flex gap-1 justify-center md:justify-baseline md:gap-2 flex-row flex-wrap">
+                <h2 class="font-bold text-2xl md:text-4xl lg:text-[48px] leading-tight text-container tracking-tight">a</h2>
+                <span class="bg-[#0C0C0C] black-text font-bold text-2xl md:text-4xl lg:text-[48px] leading-tight text-[#FFFEFE]">Junior Web & Mobile Developer</span>
+                <span class="dot-text font-bold text-2xl md:text-4xl lg:text-[48px] leading-tight">.</span>
               </div>
-              <p class="text-xl font-medium text-container leading-tight mt-2 tracking-tight text-[#6C6C6C] w-[50ch]">I&apos;m a Junior Web & Mobile Developer based in Bojongsari, Indonesia. I&apos;m a fresh graduate from SMK Tunas Media and I&apos;m majoring in Informatika at Universitas Bunda Mulia.</p>
+              <p class="text-lg md:text-xl font-medium text-container leading-tight mt-2 tracking-tight text-[#6C6C6C] w-full md:w-[50ch]">I&apos;m a Junior Web & Mobile Developer based in Bojongsari, Indonesia. I&apos;m a fresh graduate from SMK Tunas Media and I&apos;m majoring in Informatika at Universitas Bunda Mulia.</p>
             </div>
-		      </div>
+          </div>
         </div>
-        <div class="mt-40 leading-tight w-full tracking-tight">
+        <div class="mt-20 md:mt-40 leading-tight w-full tracking-tight px-4 md:px-0">
           <div>
             <div class="flex w-full flex-col items-center justify-center">
               <div>
-                <h1 class="font-black text-[64px] text-center">Work</h1>
-                <p class="text-[#6C6C6C] font-medium text-2xl text-center">Check my personal projects & work projects</p>
+                <h1 class="font-black text-4xl md:text-5xl lg:text-[64px] text-center">Work</h1>
+                <p class="text-[#6C6C6C] font-medium text-xl md:text-2xl text-center">Check my personal projects & work projects</p>
               </div>
-              <div class="mt-8">
-                <div class="flex gap-5">
-                  <button class="filter-btn bg-[#1E1E1E] text-white px-8 py-3 rounded-4xl font-bold" data-category="all">All ({projects.length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-8 py-3 rounded-4xl font-bold" data-category="React">React ({projects.filter(p => p.category === "React" || p.tags.includes("React")).length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-8 py-3 rounded-4xl font-bold" data-category="React Native">React Native ({projects.filter(p => p.category === "React Native" || p.tags.includes("React Native")).length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-8 py-3 rounded-4xl font-bold" data-category="Expo">Expo ({projects.filter(p => p.tags.includes("Expo")).length})</button>
-
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-8 py-3 rounded-4xl font-bold" data-category="NextJs">NextJs ({projects.filter(p => p.category === "NextJs" || p.tags.includes("NextJs")).length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-8 py-3 rounded-4xl font-bold" data-category="JavaScript">JavaScript ({projects.filter(p => p.tags.includes("JavaScript")).length})</button>
+              <div class="mt-8 overflow-x-auto w-full">
+                <div class="flex gap-2 md:gap-5 min-w-max md:min-w-0 justify-center">
+                  <button class="filter-btn bg-[#1E1E1E] text-white px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="all">All ({projects.length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="React">React ({projects.filter(p => p.category === "React" || p.tags.includes("React")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="React Native">React Native ({projects.filter(p => p.category === "React Native" || p.tags.includes("React Native")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="Expo">Expo ({projects.filter(p => p.tags.includes("Expo")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="NextJs">NextJs ({projects.filter(p => p.category === "NextJs" || p.tags.includes("NextJs")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="JavaScript">JavaScript ({projects.filter(p => p.tags.includes("JavaScript")).length})</button>
                 </div>
               </div>
             </div>
@@ -107,8 +103,72 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
             </div>
           </div>
         </div>
+        <div class="leading-tight mb-19 w-full tracking-tight px-4 md:px-0">
+          <div>
+            <div class="flex w-full flex-col items-center justify-center">
+              <div>
+                <h1 class="font-black text-4xl md:text-5xl lg:text-[56px] text-center leading-tight text-[#0C0C0C]">Resume</h1>
+                <p class="text-[#6C6C6C] max-w-full md:max-w-[54ch] font-medium text-xl md:text-2xl text-center">I started my journey as a programmer 3 years ago when i enrolled to SMK Tunas Media and been loving it since. These are the experience and skills i developed throughout those 3 years</p>
+              </div>
+              <h1 class="bg-[#0C0C0C] mt-16 md:mt-28 font-bold text-2xl md:text-3xl lg:text-[36px] leading-tight text-[#FFFEFE] px-4 py-2">Education</h1>
+
+                <div class="mt-8 flex flex-col gap-2">
+                  <h3 class="font-bold text-xl md:text-2xl text-center leading-tight">SMK Tunas Media</h3>
+                  <h4 class="font-medium leading-tight">Rekayasa Perangkat Lunakk</h4>
+                  <p class="text-[#6C6C6C] text-sm text-center leading-tight">2023-2025</p>
+                </div>
+                <h1 class="bg-[#0C0C0C] mt-10 font-bold text-2xl md:text-3xl lg:text-[36px] leading-tight text-[#FFFEFE] px-4 py-2">Work Experience</h1>
+
+                <div class="mt-8 flex flex-col text-center  gap-10">
+                  <div class="flex flex-col text-center gap-2">
+                    <h3 class="font-bold text-xl md:text-2xl leading-tight">Intern Frontend Developer</h3>
+                    <h4 class="font-medium leading-tight">Merah Putih Media</h4>
+                    <p class="text-[#6C6C6C] text-sm leading-tight">Febuary 2024 - March 2024</p>
+                  </div>
+                  <div class="flex flex-col text-center gap-2">
+                    <h3 class="font-bold text-xl md:text-2xl leading-tight">Head Mobile Developer</h3>
+                    <h4 class="font-medium leading-tight">Nexthrive</h4>
+                    <p class="text-[#6C6C6C] text-sm leading-tight">Febuary 2024 - Present</p>
+                  </div>
+                </div>
+                <h1 class="bg-[#0C0C0C] mt-10 font-bold text-2xl md:text-3xl lg:text-[36px] leading-tight text-[#FFFEFE] px-4 py-2">Skills</h1>
+
+                <div class="mt-8 flex flex-col  text-left md:flex-row items-center justify-center gap-8 md:gap-15">
+                  <div class="flex  flex-col gap-3">
+                    <p class="font-medium">Java</p>
+                    <p class="font-medium">React Native</p>
+                    <p class="font-medium">React JS</p>
+                    <p class="font-medium">NextJS</p>
+                  </div>
+                  <div class="flex flex-col text-left w-full md:w-fit  gap-3">
+                    <p class="font-medium">MySQL</p>
+                    <p class="font-medium">Typescript</p>
+                    <p class="font-medium">Expo</p>
+                    <p class="font-medium">Javascript</p>
+                  </div>
+                </div>
+          </div>
+        </div>
       </main>
-      <footer class="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
+      <footer id="contact" class="bg-black text-white py-10 md:py-16 w-full mt-5">
+        <div class="container px-6 md:px-20">
+          <h2 class="text-3xl md:text-4xl font-bold mb-5">Contacts</h2>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-3">
+              <i class="uil uil-whatsapp text-xl"></i>
+              <a href="https://wa.me/6289685237927" class="hover:underline text-sm md:text-base">Whatsapp: +62 89685237927</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="uil uil-instagram text-xl"></i>
+              <a href="https://instagram.com/DefinetlyRay" class="hover:underline text-sm md:text-base">Instagram: @DefinetlyRay</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="uil uil-linkedin text-xl"></i>
+              <a href="https://linkedin.com/in/your-profile" class="hover:underline text-sm md:text-base">LinkedIn: Edgar Manuello Agus Setiawan</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
     <!-- Update the script tag to use client:load directive -->
     <script>

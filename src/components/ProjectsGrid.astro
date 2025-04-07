@@ -27,8 +27,8 @@ const totalPages = Math.ceil(projects.length / itemsPerPage);
 const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 ---
 
-<div class="flex flex-col gap-5">
-  <div id="projects-grid" class="grid grid-cols-3 gap-7 grid-rows-2">
+<div class="flex flex-col gap-5 mb-20 md:mb-40">
+  <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
     {projects.map((project, index) => (
       <div 
         class="project-item" 
@@ -50,7 +50,7 @@ const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
   </div>
 
   {totalPages > 1 && (
-    <div class="mt-8 mb-20 flex justify-center">
+    <div class="mt-8 flex justify-center">
       <Pagination>
         <PaginationContent>
           <PaginationItem>
@@ -61,7 +61,7 @@ const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
             <PaginationItem>
               <button 
                 data-page={page}
-                class={`pagination-link cursor-pointer w-10 h-10 flex items-center justify-center rounded-md text-sm ${page === 1 ? 'bg-[#1E1E1E] text-white' : 'text-black hover:bg-gray-100'}`}
+                class={`pagination-link cursor-pointer w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-md text-xs md:text-sm ${page === 1 ? 'bg-[#1E1E1E] text-white' : 'text-black hover:bg-gray-100'}`}
               >
                 {page}
               </button>

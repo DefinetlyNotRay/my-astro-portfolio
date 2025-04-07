@@ -13,25 +13,25 @@ const { title, description, imageUrl, tags, siteUrl, githubUrl } = Astro.props;
 
 <div class="card">
   <div
-    class="max-w-[435px] h-[350px] rounded-3xl"
-    style={`background-size:cover; background-image: url('${imageUrl}');`}
+    class="w-full max-w-[435px] h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] rounded-3xl"
+    style={`background-size:cover; background-position: center; background-image: url('${imageUrl}');`}
   ></div>
-  <div class="flex flex-col mt-5 gap-3">
-    <h1 class="font-bold text-2xl">{title}</h1>
-    <div class="flex flex-wrap gap-2">
+  <div class="flex flex-col mt-3 md:mt-5 gap-2 md:gap-3">
+    <h1 class="font-bold text-xl md:text-2xl">{title}</h1>
+    <div class="flex flex-wrap gap-1 md:gap-2">
       {tags.map(tag => (
-        <button class="bg-[#EFEFEF] text-black px-7 py-1 text-sm rounded-4xl font-bold">{tag}</button>
+        <button class="bg-[#EFEFEF] text-black px-3 md:px-7 py-1 text-xs md:text-sm rounded-4xl font-bold">{tag}</button>
       ))}
     </div>
-    <p class="text-[#6C6C6C] font-medium h-10 max-w-[40ch]">{description}</p>
+    <p class="text-[#6C6C6C] font-medium text-sm md:text-base h-auto md:h-10 max-w-full md:max-w-[40ch]">{description}</p>
   </div>
-  <div class="flex gap-4 mt-5 items-center">
-    <a href={siteUrl} class="bg-[#1E1E1E] text-white px-14 py-4 flex items-center gap-3 rounded-[14px]">
-      <i class="uil uil-eye text-xl"></i> 
+  <div class="flex flex-col sm:flex-row gap-3 md:gap-4 mt-3 md:mt-5 items-center">
+    <a href={siteUrl} class="w-full sm:w-auto bg-[#1E1E1E] text-white px-6 md:px-14 py-3 md:py-4 flex items-center justify-center gap-2 md:gap-3 rounded-[14px] text-sm md:text-base">
+      <i class="uil uil-eye text-lg md:text-xl"></i> 
       <span class="font-semibold">View Site</span>
     </a>
-    <a href={githubUrl} class="bg-[#FAFAFA] text-[#1E1E1E] px-[45px] py-4 flex gap-3 rounded-[14px]">
-      <box-icon name='github' type='logo'></box-icon>
+    <a href={githubUrl} class="w-full sm:w-auto bg-[#FAFAFA] text-[#1E1E1E] px-6 md:px-[45px] py-3 md:py-4 flex items-center justify-center gap-2 md:gap-3 rounded-[14px] text-sm md:text-base">
+      <box-icon name='github' type='logo' size="sm md:md"></box-icon>
       <span class="font-semibold">Github Repo</span>
     </a>
   </div>
