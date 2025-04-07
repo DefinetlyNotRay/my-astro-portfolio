@@ -39,7 +39,7 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sacramento&display=swap" rel="stylesheet">
   </head>
-  <body style="font-family: 'Lato', sans-serif;">
+  <body style="font-family: 'Lato', sans-serif;" class="overflow-x-hidden">
     <div class="">
       <nav class="text-black flex flex-row justify-center py-10 text-sm">
         <div>
@@ -58,15 +58,16 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
       </nav>
 
       <main class="flex flex-col items-center justify-center mt-10" >
-        <div id="home" class="flex flex-col lg:flex-row justify-center gap-10  lg:gap-28 w-full items-center h-full px-4 md:px-0">
+        <div id="home" class="flex flex-col lg:flex-row justify-center gap-10 lg:gap-28 w-full items-center h-full px-4 md:px-0">
           <div class="relative">
-            <div class="absolute -top-10 -right-22 w-[150px] hidden lg:block  md:w-[220px] h-[80px] md:h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-right" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
+            <div class="absolute -top-10 -right-22 w-[150px] hidden lg:block md:w-[220px] h-[80px] md:h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-right" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
             <div
-            class="w-[300px] md:w-[400px] lg:w-[534px] h-[400px] md:h-[500px] lg:h-[698px]"
-            style="background-size: cover; background-image: url('https://5r7rfju2l4.ufs.sh/f/u1nbYPCUJps7AlSADSFc3pC5ShFDYOXkMTxlUQ2wsfBJEev9');"
-          ></div>
-          <div class="absolute -bottom-10 -left-22 w-[150px] md:w-[220px] h-[80px] hidden lg:block  md:h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-left" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
-        </div>
+              class="w-[300px] md:w-[400px] lg:w-[534px] h-[400px] md:h-[500px] lg:h-[698px] lazy-background"
+              data-bg-src="https://5r7rfju2l4.ufs.sh/f/u1nbYPCUJps7AlSADSFc3pC5ShFDYOXkMTxlUQ2wsfBJEev9"
+              style="background-color: #f0f0f0;"
+            ></div>
+            <div class="absolute -bottom-10 -left-22 w-[150px] md:w-[220px] h-[80px] hidden lg:block md:h-[100px] bg-[#F6F6F6] rounded-[17px] rectangle-left" style="box-shadow: 0px 0px 21.9px 5px rgba(0, 0, 0, 0.25);"></div>         
+          </div>
           <div class="mt-16 md:mt-0 px-4 md:px-0">
             <div class="text-center lg:text-left">
               <h1 class="font-bold text-4xl md:text-5xl lg:text-[64px] text-container leading-tight tracking-tight">Hi, I&apos;m Edgar and I&apos;m</h1>
@@ -179,6 +180,7 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
       gsap.registerPlugin(ScrollTrigger);
     
       document.addEventListener('DOMContentLoaded', () => {
+        // GSAP animations
         gsap.from(".text-container", {
           x: 100,
           opacity: 0,
@@ -214,6 +216,42 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
           ease: "power3.out",
           delay: 0.7,
         });
+        
+        // Lazy loading for background images
+        const lazyBackgrounds = document.querySelectorAll('.lazy-background');
+        
+        if ('IntersectionObserver' in window) {
+          const lazyBackgroundObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const lazyBackground = entry.target;
+                const bgSrc = lazyBackground.getAttribute('data-bg-src');
+                
+                if (bgSrc) {
+                  lazyBackground.style.backgroundImage = `url('${bgSrc}')`;
+                  lazyBackground.style.backgroundSize = 'cover';
+                  lazyBackground.style.backgroundPosition = 'center';
+                }
+                
+                lazyBackgroundObserver.unobserve(lazyBackground);
+              }
+            });
+          });
+          
+          lazyBackgrounds.forEach(lazyBackground => {
+            lazyBackgroundObserver.observe(lazyBackground);
+          });
+        } else {
+          // Fallback for browsers that don't support IntersectionObserver
+          lazyBackgrounds.forEach(lazyBackground => {
+            const bgSrc = lazyBackground.getAttribute('data-bg-src');
+            if (bgSrc) {
+              lazyBackground.style.backgroundImage = `url('${bgSrc}')`;
+              lazyBackground.style.backgroundSize = 'cover';
+              lazyBackground.style.backgroundPosition = 'center';
+            }
+          });
+        }
       });
     </script>
   </body>
