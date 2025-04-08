@@ -117,10 +117,10 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
               <div class="mt-8 overflow-x-auto w-full">
                 <div class="flex gap-2 md:gap-5 min-w-max md:min-w-0 justify-center">
                   <button class="filter-btn bg-[#1E1E1E] text-white px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="all">All ({projects.length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl foxl-bold  md:text-xl" data-category="React">React ({projects.filter(p => p.category === "React" || p.tags.includes("React")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="React">React ({projects.filter(p => p.category === "React" || p.tags.includes("React")).length})</button>
                   <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="React Native">React Native ({projects.filter(p => p.category === "React Native" || p.tags.includes("React Native")).length})</button>
                   <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="Expo">Expo ({projects.filter(p => p.tags.includes("Expo")).length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lgxlext-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="HTML">HTML ({projects.filter(p => p.category === "HTML" || p.tags.includes("HTML")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="HTML">HTML ({projects.filter(p => p.category === "HTML" || p.tags.includes("HTML")).length})</button>
                   <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="JavaScript">JavaScript ({projects.filter(p => p.tags.includes("JavaScript")).length})</buass=>
                 </div>
               </div>
