@@ -66,7 +66,7 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sacramento&display=swap" rel="stylesheet">
   </head>
-  <body style="font-family: 'Lato', sans-serif;" class="overflow-x-hidden">
+  <body style="font-family: 'Lato', sans-serif;" class="overflow-x-hidden md:overflow-x-hidden">
     <div class="">
       <nav class="text-black flex flex-row justify-center py-10 text-sm">
         <div>
@@ -116,12 +116,12 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
               </div>
               <div class="mt-8 overflow-x-auto w-full">
                 <div class="flex gap-2 md:gap-5 min-w-max md:min-w-0 justify-center">
-                  <button class="filter-btn bg-[#1E1E1E] text-white px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="all">All ({projects.length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="React">React ({projects.filter(p => p.category === "React" || p.tags.includes("React")).length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="React Native">React Native ({projects.filter(p => p.category === "React Native" || p.tags.includes("React Native")).length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="Expo">Expo ({projects.filter(p => p.tags.includes("Expo")).length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="HTML">HTML ({projects.filter(p => p.category === "HTML" || p.tags.includes("HTML")).length})</button>
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-4 md:px-8 py-2 md:py-3 rounded-4xl font-bold text-xs md:text-sm" data-category="JavaScript">JavaScript ({projects.filter(p => p.tags.includes("JavaScript")).length})</button>
+                  <button class="filter-btn bg-[#1E1E1E] text-white px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="all">All ({projects.length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl foxl-bold  md:text-xl" data-category="React">React ({projects.filter(p => p.category === "React" || p.tags.includes("React")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="React Native">React Native ({projects.filter(p => p.category === "React Native" || p.tags.includes("React Native")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="Expo">Expo ({projects.filter(p => p.tags.includes("Expo")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lgxlext-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="HTML">HTML ({projects.filter(p => p.category === "HTML" || p.tags.includes("HTML")).length})</button>
+                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="JavaScript">JavaScript ({projects.filter(p => p.tags.includes("JavaScript")).length})</buass=>
                 </div>
               </div>
             </div>
@@ -230,18 +230,18 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
           delay: 0.2,
         });
         gsap.from(".black-text", {
-          x: 500,
+          x: 140,
           opacity: 0,
-          duration: 0.8,
+          duration: 1,
           ease: "power3.out",
-          delay: 0.6,
+          delay: .6,
         });
         gsap.from(".dot-text", {
-          x: 500,
+          x: 140,
           opacity: 0,
-          duration: 0.9,
+          duration: 1,
           ease: "power3.out",
-          delay: 0.7,
+          delay: .7,
         });
         
         // Lazy loading for background images
