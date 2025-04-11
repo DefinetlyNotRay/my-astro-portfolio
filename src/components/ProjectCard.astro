@@ -26,14 +26,26 @@ const { title, description, imageUrl, tags, siteUrl, githubUrl } = Astro.props;
     </div>
     <p class="text-[#6C6C6C] font-medium text-sm md:text-base h-auto md:h-10 max-w-full md:max-w-[50ch]">{description}</p>
   </div>
-  <div class="flex flex-col sm:flex-row gap-3 md:gap-4 mt-3 md:mt-5 items-center">
-    <a href={siteUrl} class="w-full sm:w-auto bg-[#1E1E1E] text-white px-6 md:px-14 py-3 md:py-4 flex items-center justify-center gap-2 md:gap-3 rounded-[14px] text-sm md:text-base">
-      <i class="uil uil-eye text-lg md:text-xl"></i> 
-      <span class="font-semibold">View Site</span>
-    </a>
-    <a href={githubUrl} class="w-full sm:w-auto bg-[#FAFAFA] text-[#1E1E1E] px-6 md:px-[45px] py-3 md:py-4 flex items-center justify-center gap-2 md:gap-3 rounded-[14px] text-sm md:text-base">
+  <div class=`flex flex-col ${siteUrl !== "#" ? ("sm:flex-row"):("sm:flex-col")}  gap-3 md:gap-4 mt-3 md:mt-5 items-center`>
+    {siteUrl !== "#" &&
+      <a href={siteUrl} class="w-full sm:w-auto bg-[#1E1E1E] text-white px-6 md:px-14 py-3 md:py-4 flex items-center justify-center gap-2 md:gap-3 rounded-[14px] text-sm md:text-base">
+        <i class="uil uil-eye text-lg md:text-xl"></i> 
+        <span class="font-semibold">View Site</span>
+      </a>
+    }
+  {siteUrl !== "#" ? (
+
+  <a href={githubUrl} class="w-full sm:w-auto bg-[#FAFAFA] text-[#1E1E1E] px-6 md:px-[45px] py-3 md:py-4 flex items-center justify-center gap-2 md:gap-3 rounded-[14px] text-sm md:text-base">
       <box-icon name='github' type='logo' size="sm md:md"></box-icon>
       <span class="font-semibold">Github Repo</span>
     </a>
+  ) : (
+  <a href={githubUrl} class="w-full sm:w-full bg-[#FAFAFA] text-[#1E1E1E] px-6 md:px-[45px] py-3 md:py-4 flex items-center justify-center gap-2 md:gap-3 rounded-[14px] text-sm md:text-base">
+      <box-icon name='github' type='logo' size="sm md:md"></box-icon>
+      <span class="font-semibold">Github Repo</span>
+    </a>
+  )
+}
+    
   </div>
 </div>
