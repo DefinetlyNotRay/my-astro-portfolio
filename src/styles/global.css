@@ -118,3 +118,47 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Transparent scrollbar for all browsers */
+
+/* For Webkit browsers (Chrome, Safari, newer versions of Opera) */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* For IE and Edge */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* For IE (to completely hide scrollbar) */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Re-enable scrollbar for specific elements if needed */
+.element-with-scrollbar {
+  -ms-overflow-style: auto;
+  scrollbar-width: auto;
+}
+
+.element-with-scrollbar::-webkit-scrollbar {
+  display: block;
+}

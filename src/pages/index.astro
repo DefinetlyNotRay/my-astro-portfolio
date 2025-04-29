@@ -2,14 +2,39 @@
 import "../styles/global.css";
 import ProjectsGrid from "../components/ProjectsGrid.astro";
 import type { Project } from "../components/ProjectsGrid.astro";
+import { Accordion } from "../components/content/Accordion.tsx";
 
 // Sample projects data - you can replace this with your actual data
+
+const accordionData = [
+	{
+		title: "Nexademy",
+		what: "What is Nexademy?",
+    whata: "Nexademy is a school app that is made by the Nexthrive Mobile Team.",
+		why: "Why did we make Nexademy?",
+		whya: "We've seen a lot of school apps especially the ones that most school uses that are not up to date to the current standard of mobile apps, we see a lot of school trying to work with the their current app but failing because the app has terrible support and features. The number one thing ive struggled with in this project is trying to make it responsive with every type of mobile devices.",
+		how: "How did i overcome it?",
+		howa: `By using a mix of the "react-native-size-matters" package and tailwindcss, I was able to make it responsive with almost every type of mobile devices.`,
+    github:'https://github.com/Nexthrive/NexademyV2MOBILE'
+	},
+  {
+		title: "QueenFood Absen",
+		what: "What is QueenFood Absen?",
+    whata: "QueenFood Absen is a sales attendance app.",
+		why: "Why did i make QueenFood Absen?",
+		whya: "I was asked by the comapny to make this for their sales team.What i strugled with was trying to make push notification to the admin when a sales person has attended or requesting a day off",
+		how: "How did i overcome it?",
+		howa: `By using the "Firebase Cloud Messaging API" and "Expo Push Notification" package i was able to make the push notification acros devices `,
+    github:'https://github.com/DefinetlyNotRay/QueenFoodAbsen'
+
+	},	
+];
 const projects: Project[] = [
   {
     title: "Weather App",
     description: "A Weather WebApp made with ReactJS. This project uses the VisualCrossing's API",
     imageUrl: "https://5r7rfju2l4.ufs.sh/f/u1nbYPCUJps7DMXXdY9mUOd4PsD1IYHJi8uVZNFbexfTkLrQ",
-    tags: ["React", "JavaScript"],
+    tags: ["React"],
     siteUrl: "https://project-weatherapp-web.netlify.app/",
     githubUrl: "https://github.com/DefinetlyNotRay/Weather-Web",
     category: "React"
@@ -39,7 +64,7 @@ const projects: Project[] = [
     tags: ["React Native", "Expo"],
     siteUrl: "#",
     githubUrl: "https://github.com/DefinetlyNotRay/QueenFoodAbsen",
-    category: "React"
+    category: "React Native"
   },  
   {
     title: "Coffee Shop Frontend",
@@ -75,23 +100,56 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+      /* Loading bar styles */
+      .loading-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      .loading-text {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .loading-bar-container {
+        width: 300px;
+        height: 10px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .loading-bar {
+        height: 100%;
+        width: 0%;
+        background-color: #0C0C0C;
+        border-radius: 5px;
+      }
+    </style>
   </head>
   <body style="font-family: 'Lato', sans-serif;" class="overflow-x-hidden md:overflow-x-hidden">
+    <!-- Loading screen -->
+    <div class="loading-container">
+      <div class="loading-text">generating UI/UX wait a moment</div>
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+    </div>
+
     <div class="">
       <nav class="text-black flex flex-row justify-center py-10 text-sm">
-        <div>
-          <ul class="flex gap-32 md:gap-16 sm:gap-8">
-            <li>
-              <a href="#work">Work</a>
-            </li>
-            <li>
-              <a href="#home">Home</a>
-            </li>
-            <li>
-              <a href="#contact">Contact Me</a>
-            </li>
-          </ul>
-        </div>
+  
       </nav>
 
       <main class="flex flex-col items-center justify-center mt-10" >
@@ -117,6 +175,42 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
             </div>
           </div>
         </div>
+        <div id="home" class="flex mt-50 flex-col lg:flex-row justify-center gap-10 lg:gap-28 w-full items-center h-full px-4 md:px-0">
+         
+          <div class="mt-16 md:mt-0 px-4 md:px-0">
+            <div class="text-center lg:text-left">
+              <h1 class="font-bold text-4xl md:text-5xl lg:text-[64px] text-container leading-tight tracking-tight">About Me</h1>
+       
+              <p class="text-lg md:text-xl font-medium text-container leading-tight mt-2 tracking-tight text-[#6C6C6C] w-full md:w-[120ch]">I'm someone who's always been passionate about pushing boundaries and exploring new possibilities. Ever since I can remember, I've been driven by a deep curiosity and a desire to make a meaningful impact in everything I do. Whether it's through my work, my personal projects, or collaborations with others, I strive to bring creativity, dedication, and a fresh perspective to the table.
+
+                Throughout my journey, I've encountered countless opportunities to grow, learn, and adapt - experiences that have shaped me into the person I am today. My motivation stems from the want to provide and give back to my two loving parents, and I'm constantly inspired by my peers that constantly push me to be better. Challenges don't intimidate me; instead, they fuel my determination to innovate and overcome.
+                
+                I believe in continuous learning, staying true to my values, and building authentic connections with the people around me.
+                
+                At the core of everything I do is a commitment to learning from my mistakes and getting back up 2 times stronger, and I'm excited to see where this journey will take me next.</p>
+            </div>
+          </div>
+        </div>
+        <div id="work" class="mt-20 md:mt-40 leading-tight w-full tracking-tight px-4 md:px-0">
+          <div class="flex justify-center w-full ">
+            <div class="">
+
+              <div class="flex w-[90rem] flex-col justify-center">
+                <div>
+                  <h1 class="font-black text-4xl md:text-5xl lg:text-[64px] text-right">My Proudest Work</h1>
+                  <Accordion data={accordionData} client:idle />
+                </div>
+              
+                 
+             </div> 
+              </div>
+  
+              <!-- <div class="flex justify-center mt-17 w-full">
+                <ProjectsGrid projects={projects} currentPage={currentPage} />
+              </div> -->
+            </div>
+            </div>
+        </div>
         <div id="work" class="mt-20 md:mt-40 leading-tight w-full tracking-tight px-4 md:px-0">
           <div>
             <div class="flex w-full flex-col items-center justify-center">
@@ -135,7 +229,7 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
                   <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="PHP">PHP ({projects.filter(p => p.tags.includes("PHP")).length})</button>
                   <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="SQLite">SQLite ({projects.filter(p => p.tags.includes("SQLite")).length})</button>
 
-                  <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="JavaScript">JavaScript ({projects.filter(p => p.tags.includes("JavaScript")).length})</button>
+                  <!-- <button class="filter-btn bg-[#EFEFEF] text-black px-4  md:px-7 lg:px-8 lg:text-sm py-2 md:py-3 rounded-4xl font-bold  md:text-xl" data-category="JavaScript">JavaScript ({projects.filter(p => p.tags.includes("JavaScript")).length})</button> -->
                 </div>
               </div>
             </div>
@@ -184,7 +278,7 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
                   </div>
                   <div class="flex flex-col text-left w-full md:w-fit  gap-3">
                     <p class="font-medium">MySQL</p>
-                    <p class="font-medium">Typescript</p>
+                    <p class="font-medium">Laravel</p>
                     <p class="font-medium">Expo</p>
                     <p class="font-medium">Javascript</p>
                   </div>
@@ -221,42 +315,117 @@ const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.sear
       gsap.registerPlugin(ScrollTrigger);
     
       document.addEventListener('DOMContentLoaded', () => {
-        // GSAP animations
-        gsap.from(".text-container", {
-          x: 100,
-          opacity: 0,
-          delay: 0.5,
-          duration: 0.5,
-          ease: "power3.out",
+        // Disable scrolling when loading screen is visible
+        document.body.style.overflow = 'hidden';
+        
+        // Loading animation
+        const loadingBar = document.querySelector('.loading-bar');
+        const loadingContainer = document.querySelector('.loading-container');
+        
+        // Animate loading bar
+        gsap.to(loadingBar, {
+          width: "100%",
+          duration: 2,
+          ease: "power1.inOut"
         });
-        gsap.from(".rectangle-left", {
-          x: -100,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          delay: 0.2,
-        });
-        gsap.from(".rectangle-right", {
-          x: 100,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          delay: 0.2,
-        });
-        gsap.from(".black-text", {
-          x: 140,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          delay: .6,
-        });
-        gsap.from(".dot-text", {
-          x: 140,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          delay: .7,
-        });
+        
+        // Check if all images are loaded
+        const allImages = Array.from(document.images);
+        let loadedImagesCount = 0;
+        
+        // Function to hide loading screen
+        const hideLoadingScreen = () => {
+          // Start animations BEFORE the loading screen disappears
+          startPageAnimations();
+          
+          // Then fade out the loading screen
+          gsap.to(loadingContainer, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: () => {
+              loadingContainer.style.display = 'none';
+              // Re-enable scrolling after loading screen is hidden
+              document.body.style.overflow = '';
+            }
+          });
+        };
+        
+        // If there are no images, hide loading screen after animation completes
+        if (allImages.length === 0) {
+          setTimeout(hideLoadingScreen, 2000);
+        } else {
+          // Check when all images are loaded
+          allImages.forEach(img => {
+            if (img.complete) {
+              loadedImagesCount++;
+              if (loadedImagesCount === allImages.length) {
+                hideLoadingScreen();
+              }
+            } else {
+              img.addEventListener('load', () => {
+                loadedImagesCount++;
+                if (loadedImagesCount === allImages.length) {
+                  hideLoadingScreen();
+                }
+              });
+              
+              // Handle error case
+              img.addEventListener('error', () => {
+                loadedImagesCount++;
+                if (loadedImagesCount === allImages.length) {
+                  hideLoadingScreen();
+                }
+              });
+            }
+          });
+          
+          // Fallback in case some images fail to load
+          setTimeout(() => {
+            if (loadingContainer.style.display !== 'none') {
+              hideLoadingScreen();
+            }
+          }, 5000);
+        }
+        
+        // Function to start page animations
+        function startPageAnimations() {
+          // GSAP animations
+          gsap.from(".text-container", {
+            x: 100,
+            opacity: 0,
+            delay: 0.2,
+            duration: 0.5,
+            ease: "power3.out",
+          });
+          gsap.from(".rectangle-left", {
+            x: -100,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power3.out",
+            delay: 0.1,
+          });
+          gsap.from(".rectangle-right", {
+            x: 100,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power3.out",
+            delay: 0.1,
+          });
+          gsap.from(".black-text", {
+            x: 140,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.3,
+          });
+          gsap.from(".dot-text", {
+            x: 140,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.4,
+          });
+        }
         
         // Lazy loading for background images
         const lazyBackgrounds = document.querySelectorAll('.lazy-background');
